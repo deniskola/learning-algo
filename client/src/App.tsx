@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Route, BrowserRouter as Router, BrowserRouter, Routes } from 'react-router-dom';
+import { Drawer } from '@mui/material';
+import Sidebar from './Components/Layout/Sidebar';
 
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
       <header className="App-header">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<div>home</div>}>
-              <Route path="/test" element={<div>test</div>}></Route>
+            <Route path="/" element={<Sidebar/>}>
+             
             </Route>
           </Routes>
         </BrowserRouter>
