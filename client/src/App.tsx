@@ -1,21 +1,22 @@
 import './App.css';
-import { Route, BrowserRouter as Router, BrowserRouter, Routes } from 'react-router-dom';
-import { Drawer } from '@mui/material';
-import Sidebar from './Components/Layout/Sidebar';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Home from './Views/Main/Home';
+import Login from './Views/Login/Login';
+import MainView from './Components/Layout/MainView';
 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <BrowserRouter>
+       <Router>
           <Routes>
-            <Route path="/" element={<Sidebar/>}>
-             
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/" element={<MainView />}>
+              <Route index element={<Home/>}/>  
+              <Route path="test" element={<div>test</div>}/>           
             </Route>
           </Routes>
-        </BrowserRouter>
-      </header>
+      </Router>   
     </div>
   );
 }
