@@ -2,7 +2,7 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 
 interface AppBarProps extends MuiAppBarProps {
@@ -28,7 +28,7 @@ const AppBar = styled(MuiAppBar, {
 
 const Header = ({open, handleDrawerOpen}: any) => {
     return (
-        <AppBar position="fixed" open={open} color="transparent" style={{boxShadow: "none"}} >
+        <AppBar position="fixed" open={open} color="transparent" variant="outlined" style={{borderTop:"none"}}>
             <Toolbar>
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} align="left" component="div">
                 algO(n)
