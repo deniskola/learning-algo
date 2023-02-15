@@ -1,0 +1,27 @@
+{
+    "test": "test",
+    "challengeKinds": [
+        {
+            "id": 1,
+            "kind": "sorting",
+            "modules": [
+                "selection sort", "insertion sort", "mergesort", "quicksort"
+            ]
+        },
+        {
+            "id": 2,
+            "kind": "searching",
+            "modules": [
+                "binary search tree", "balanced search tree", "hash tables"
+            ]
+        },
+        {
+            "id": 3,
+            "kind": "graphs",
+            "modules": [
+                "undirected graphs", "directed graphs", "minimum spaning tree", "shortest paths"
+            ]
+        }
+    ]
+
+}

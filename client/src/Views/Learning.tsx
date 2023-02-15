@@ -12,23 +12,29 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { useState } from "react";
+import data from "../MockData/mockData.json"
 
 const Learning = () =>{
+  
+   
+  
     return (
         <div>
             <Grid container spacing={2}>
             <Grid item xs={2}>
                 <Card variant="outlined">
                 <List>
-          {['Test1', 'Test2', 'Test3', 'Test4', 'Test5'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+                
+          {data.challengeKinds.map((x) => (
+            <ListItem  key={x.id} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? 
-                  <InboxIcon /> : <MailIcon />
-                  }
+           
+                  <InboxIcon /> 
+            
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={x.kind} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -38,13 +44,15 @@ const Learning = () =>{
             <Grid item xs={10}>
                 
                 <div >
+                {data.challengeKinds[0].modules.map((x) => (
+                  
                     <Accordion variant="outlined">
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                         >
-                        <Typography>Accordion 1</Typography>
+                        <Typography>{x}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
@@ -53,6 +61,8 @@ const Learning = () =>{
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
+                       
+                      ))}
                  </div>
                     
                 
