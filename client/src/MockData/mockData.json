@@ -5,22 +5,27 @@
             "id": 1,
             "kind": "sorting",
             "modules": [
-                "selection sort", "insertion sort", "mergesort", "quicksort"
+                {
+                    "name": "selection sort",
+                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
+                },
+                {
+                    "name": "insertion sort",
+                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
+                },
+                {
+                    "name": "mergesort",
+                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
+                },
+                {
+                    "name": "quicksort",
+                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
+                }
             ]
         },
         {
             "id": 2,
-            "kind": "searching",
-            "modules": [
-                "binary search tree", "balanced search tree", "hash tables"
-            ]
-        },
-        {
-            "id": 3,
-            "kind": "graphs",
-            "modules": [
-                "undirected graphs", "directed graphs", "minimum spaning tree", "shortest paths"
-            ]
+            "kind": "searching"
         }
     ]
 
