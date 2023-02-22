@@ -9,6 +9,7 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
+import { Link } from 'react-router-dom';
 
 const Module = ({mod}:any) => {
 
@@ -33,13 +34,21 @@ const Module = ({mod}:any) => {
                     }}
                   >
                     {mod.steps.map((x:any) => (
+                      <>
+                      
                     <TimelineItem>
                       <TimelineSeparator>
-                        <TimelineDot />
+                        <Link to={'/step'}>
+                          <TimelineDot />
+                        </Link>
                         <TimelineConnector />
                       </TimelineSeparator>
-                      <TimelineContent>{x}</TimelineContent>
+                      <Link to={`${mod.name}/${x}`}>
+                        <TimelineContent>{x}</TimelineContent>
+                      </Link>
                     </TimelineItem>
+                    
+                     </>
                     ))}
                   </Timeline>
                 </Typography>
