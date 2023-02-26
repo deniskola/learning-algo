@@ -1,10 +1,10 @@
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Home from './Views/Home';
-import Login from './Views/Login';
-import Learning from './Views/Learning';
-import MainView from './Components/Layout/MainView';
-import StepContent from './Views/StepContent';
+import Home from './views/Home';
+import Login from './views/Login';
+import Learning from './views/Learning';
+import MainView from './components/Layout/MainView';
+import StepContent from './views/StepContent';
 
 
 function App() {

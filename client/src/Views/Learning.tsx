@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import data from "../MockData/mockData.json"
-import ModuleContainer from "../Components/Learning/ModuleContainer";
+import data from "../mockData/mockData.json"
+import ModuleContainer from "../components/Learning/ModuleContainer";
 
 const Learning = () =>{
     return (
