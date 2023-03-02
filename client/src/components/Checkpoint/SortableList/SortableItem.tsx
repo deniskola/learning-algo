@@ -9,8 +9,8 @@ export const ItemTypes = {
 
 const style = {
   border: '1px solid gray',
-  padding: '0.5rem 0rem 0.5rem 0.5rem',
-  marginBottom: '.5rem',
+  padding: '0.5rem 1rem 0.5rem 1rem',
+  margin: '.2rem ',
   backgroundColor: 'white',
   cursor: 'move',
 }
@@ -105,8 +105,8 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   drag(drop(ref))
 
   return (
-    <div ref={ref} style={{ ...style, opacity, width: `${parseInt(text)*50}px` }} data-handler-id={handlerId}>
-      {text}
+    <div ref={ref} style={{ ...style, opacity, height: `${parseInt(text)*50}px` }} data-handler-id={handlerId}>
+       {text}
     </div>
   )
 }

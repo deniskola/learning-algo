@@ -1,9 +1,9 @@
-import  CardList  from './../components/StepContent/CardList'
+import  SortableListContainer  from '../components/Checkpoint/SortableList/SortableListContainer'
 import { useParams } from 'react-router-dom';
 
 
 
-const StepContent = () => {
+const Checkpoint = () => {
     const params = useParams();
     return (
         // <div>
@@ -14,8 +14,8 @@ const StepContent = () => {
         //     Step: {params.stepid}
             
         // </div>
-        <CardList/>
+        <SortableListContainer/>
     );
 }
 
-export default StepContent;
+export default Checkpoint;

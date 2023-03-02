@@ -4,7 +4,8 @@ import Home from './views/Home';
 import Login from './views/Login';
 import Learning from './views/Learning';
 import MainView from './components/Layout/MainView';
-import StepContent from './views/StepContent';
+import Checkpoint from './views/Checkpoint';
+
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
             <Route path="/" element={<MainView />}>
               <Route index element={<Home/>}/>  
               <Route path="learning" element={<Learning/>}/> 
-              <Route path="learning/:moduleid/:stepid" element={<StepContent/>}/>       
+              <Route path="learning/:moduleid/:stepid" element={<Checkpoint/>}/>    
             </Route>
           </Routes>
       </Router>   

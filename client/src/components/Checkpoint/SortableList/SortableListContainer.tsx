@@ -1,14 +1,15 @@
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import update from 'immutability-helper'
-import type { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useCallback, useState } from 'react'
 
-import { Card } from './Card'
+import { Card } from './SortableItem'
 
 const style = {
   width: 400,
-  transform: 'rotate(270deg)'
+  display: 'flex',
+  flexDirection: 'row'
 }
 
 export interface Item {
@@ -20,7 +21,7 @@ export interface ContainerState {
   cards: Item[]
 }
 
-const CardList = () => {
+const SortableListContainer = () => {
   const [cards, setCards] = useState([
     {
       id: 1,
@@ -52,6 +53,8 @@ const CardList = () => {
     },
   ])
 
+  
+
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setCards((prevCards: Item[]) =>
       update(prevCards, {
@@ -81,12 +84,18 @@ const CardList = () => {
 return (
 
   <DndProvider backend={HTML5Backend}>
-    <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
+    <div style={{width: 400,
+                 display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'end'
+                }}>
+                  {cards.map((card, i) => renderCard(card, i))}
+    </div>
   </DndProvider>
   )
 }
 
-export default CardList;
+export default SortableListContainer;
 
 
 
