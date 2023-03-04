@@ -14,7 +14,7 @@ const style = {
 
 export interface Item {
   id: number
-  text: string
+  value: string
 }
 
 export interface ContainerState {
@@ -24,32 +24,32 @@ export interface ContainerState {
 const SortableListContainer = () => {
   const [cards, setCards] = useState([
     {
+      id: 0,
+      value: '1',
+    },
+    {
       id: 1,
-      text: '1',
+      value: '2',
     },
     {
       id: 2,
-      text: '2',
+      value: '5',
     },
     {
       id: 3,
-      text: '5',
+      value: '2',
     },
     {
       id: 4,
-      text: '2',
+      value: '4',
     },
     {
       id: 5,
-      text: '4',
+      value: '3',
     },
     {
       id: 6,
-      text: '3',
-    },
-    {
-      id: 7,
-      text: '1',
+      value: '1',
     },
   ])
 
@@ -71,13 +71,13 @@ const SortableListContainer = () => {
   }, [cards])
 
   const renderCard = useCallback(
-    (card: { id: number; text: string }, index: number) => {
+    (card: { id: number; value: string }, index: number) => {
       return (
         <Card
           key={card.id}
           index={index}
           id={card.id}
-          text={card.text}
+          value={card.value}
           moveCard={moveCard}
         />
       )

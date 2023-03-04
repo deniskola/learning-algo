@@ -24,10 +24,11 @@ const BubbleSort: React.FC = () => {
     {id: 4, value: 2},
     {id: 5, value: 1},
   ]);
+  const [order, setOrder] = useState<Swap[]>([]);
 
   const bubbleSort = () => {
     const arr = [...sortedArray];
-    
+    let tempOrder: Swap[] = [];
     const len = arr.length;
     let swapped;
     do {
@@ -38,9 +39,10 @@ const BubbleSort: React.FC = () => {
           arr[i] = arr[i + 1];
           arr[i + 1] = temp;
           swapped = true;
-          
+          tempOrder.push({ index1: arr[i].id, index2: arr[i+1].id })
         }
       }
+      setOrder([...order, ...tempOrder]);
       
     } while (swapped);
     setSortedArray(arr);
@@ -50,10 +52,14 @@ const BubbleSort: React.FC = () => {
     <div>
       <button onClick={bubbleSort}>Sort</button>
       <ul>
-        {sortedArray.map((x, index) => (
+        {sortedArray.map((x:any, index:any) => (
           <li key={index}>id:{x.id}, value:{x.value}</li>
         ))}
       </ul>
+      <hr />
+      {order.map((x, index) => (
+          <li key={index}>{`Swapped ${x.index1} with ${x.index2}`}</li>
+        ))}
     </div>
   );
 }
