@@ -53,7 +53,7 @@ const SortableListContainer = () => {
     },
   ])
 
-  
+  const [order, setOrder] = useState(cards.map((card) => card.id))
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setCards((prevCards: Item[]) =>
@@ -65,6 +65,10 @@ const SortableListContainer = () => {
       }),
     )
   }, [])
+
+  useEffect(() => {
+    setOrder(cards.map((card) => card.id))
+  }, [cards])
 
   const renderCard = useCallback(
     (card: { id: number; text: string }, index: number) => {
@@ -80,6 +84,10 @@ const SortableListContainer = () => {
     },
     [],
   )
+
+  useEffect(() => {
+    console.log(cards.filter((card) => order.includes(card.id)))
+  }, [order])
 
 return (
 
