@@ -5,7 +5,7 @@ import Login from './views/Login';
 import Learning from './views/Learning';
 import MainView from './components/Layout/MainView';
 import Checkpoint from './views/Checkpoint';
-import BubbleSort from './helpers/BubbleSort';
+import List from './components/Checkpoint/AlgoVisualization/List';
 
 
 
@@ -19,7 +19,7 @@ function App() {
               <Route index element={<Home/>}/>  
               <Route path="learning" element={<Learning/>}/> 
               <Route path="learning/:moduleid/:stepid" element={<Checkpoint/>}/>    
-              <Route path="test" element={<BubbleSort/>}/>    
+              <Route path="test" element={<List/>}/>    
             </Route>
           </Routes>
       </Router>   
