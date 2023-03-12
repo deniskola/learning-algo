@@ -31,52 +31,44 @@ interface Swap {
 
 const List = () => {
   const [showItems, setShowItems] = useState(false);
-  const [cards, setCards] = useState<any[]>([
+  const [cards, setCards] = useState<any>([
     {
       id: 0,
       value: '1',
-      x: [],
-      times: [0]
+      x: [0]
     },
     {
       id: 1,
       value: '2',
-      x: [],
-      times: []
+      x: [0]
     },
     {
       id: 2,
       value: '5',
-      x: [],
-      times: []
+      x: [0],
     },
     {
       id: 3,
       value: '2',
-      x: [],
-      times: []
+      x: [0],
     },
     {
       id: 4,
       value: '4',
-      x: [],
-      times: []
+      x: [0]
     },
     {
       id: 5,
       value: '3',
-      x: [],
-      times: []
+      x: [0],
     },
     {
       id: 6,
       value: '1',
-      x: [],
-      times: []
+      x: [0]
     },
   ])
   const [order, setOrder] = useState<Swap[]>([]);
-  const [itemsAnim, setItemsAnim] = useState<any>(cards);
 //   const [order, setOrder] = useState(cards.map((card) => card.id))
 
 //   useEffect(() => {
@@ -87,41 +79,57 @@ const List = () => {
 //     console.log(cards.filter((card) => order.includes(card.id)))
 //   }, [order])
 
+function keyFrameTimes() {
+  let times:any = []
+  order.map((x:any,i:any)=>{
+    times.push(i/(order.length-1))
+  })
+  return times
+}
+
 return (
-    <>
-    {showItems ? (<> 
-    <div 
-        style={{width: 400,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'end'
-        }}>
-        { itemsAnim.map((card:any) => (
-          <motion.div
-            animate={{
-              x: card.x,
-            }}
-          >
-            <ListItem key={card.id} value={card.value} />
-          </motion.div>
-         ))}
-    </div>
-     </>): (<>
+  <>  
+    <button onClick={()=> (console.log(cards))}>items</button>
+    <button onClick={()=> (console.log(order))}>order</button>
+    {showItems ? (
+    <> 
       <div 
         style={{width: 400,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'end'
-        }}>
-        { itemsAnim.map((card:any) => (
+      }}>
+        {cards.map((card:any) => (
+          <motion.div
+            animate={{
+              x: card.x,      
+            }}
+            transition= {{
+              times: keyFrameTimes(),
+              duration: 20,
+            }}
+          >
+            <ListItem key={card.id} value={card.value} />
+          </motion.div>
+         ))}
+      </div>
+    </>) : (
+    <>
+      <div 
+        style={{width: 400,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'end'
+      }}>
+        {cards.map((card:any) => (
           <div>
-              <ListItem key={card.id} value={card.value}/>
+            <ListItem key={card.id} value={card.value}/>
           </div>
-          ))}
-     </div>
+        ))}
+      </div>
     </>)} 
-    <button onClick={()=> BubbleSort(cards, itemsAnim, setOrder, order, setItemsAnim, setShowItems)}>Animate</button>
-    </>
+    <button onClick={()=> BubbleSort(cards, setOrder, order, setShowItems)}>Bubble Sort</button>
+  </>
   )
 }
 
