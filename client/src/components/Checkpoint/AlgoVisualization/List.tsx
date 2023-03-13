@@ -31,41 +31,48 @@ interface Swap {
 
 const List = () => {
   const [showItems, setShowItems] = useState(false);
-  const [cards, setCards] = useState<any>([
+  const [items, setItems] = useState<any>([
     {
       id: 0,
       value: '1',
-      x: [0]
+      x: [0],
+      opacity: [0.5]
     },
     {
       id: 1,
       value: '2',
-      x: [0]
+      x: [0],
+      opacity: [0.5]
     },
     {
       id: 2,
       value: '5',
       x: [0],
+      opacity: [0.5]
     },
     {
       id: 3,
       value: '2',
       x: [0],
+      opacity: [0.5]
     },
     {
       id: 4,
       value: '4',
-      x: [0]
+      x: [0],
+      opacity: [0.5]
     },
     {
       id: 5,
       value: '3',
       x: [0],
+      opacity: [0.5]
     },
     {
       id: 6,
       value: '1',
-      x: [0]
+      x: [0],
+      opacity: [0.5]
     },
   ])
   const [order, setOrder] = useState<Swap[]>([]);
@@ -89,7 +96,7 @@ function keyFrameTimes() {
 
 return (
   <>  
-    <button onClick={()=> (console.log(cards))}>items</button>
+    <button onClick={()=> (console.log(items))}>items</button>
     <button onClick={()=> (console.log(order))}>order</button>
     {showItems ? (
     <> 
@@ -99,17 +106,18 @@ return (
         flexDirection: 'row',
         alignItems: 'end'
       }}>
-        {cards.map((card:any) => (
+        {items.map((item:any) => (
           <motion.div
             animate={{
-              x: card.x,      
+              x: item.x,    
+              opacity: item.opacity,  
             }}
             transition= {{
               times: keyFrameTimes(),
               duration: 20,
             }}
           >
-            <ListItem key={card.id} value={card.value} />
+            <ListItem key={item.id} value={item.value}/>
           </motion.div>
          ))}
       </div>
@@ -121,14 +129,14 @@ return (
         flexDirection: 'row',
         alignItems: 'end'
       }}>
-        {cards.map((card:any) => (
+        {items.map((item:any) => (
           <div>
-            <ListItem key={card.id} value={card.value}/>
+            <ListItem key={item.id} value={item.value} />
           </div>
         ))}
       </div>
     </>)} 
-    <button onClick={()=> BubbleSort(cards, setOrder, order, setShowItems)}>Bubble Sort</button>
+    <button onClick={()=> {BubbleSort(items, setOrder, order, setShowItems)}}>Bubble Sort</button>
   </>
   )
 }

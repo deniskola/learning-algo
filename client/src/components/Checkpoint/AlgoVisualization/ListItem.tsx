@@ -32,7 +32,7 @@ export const ListItem: FC<any> = ({ value }) => {
   return (
     <div 
         // animate = {{x:100}}
-        style={{ ...style, height: `${parseInt(value)*50}px` }}
+        style={{ ...style, height: `${parseInt(value)*50}px`, backgroundColor: "#041014", color: "whitesmoke" }}
     >
        {value}
     </div>
