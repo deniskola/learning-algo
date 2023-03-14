@@ -27,7 +27,7 @@ const BubbleSort = (sortedArray:any, setOrder:any, order:any,  setShowItems:any)
                 arr[i].x.push(arr[i].x.length > 0 ? (arr[i].x.at(-1)-49) : (-49));
             }else {
             
-                tempOrder.push({ index1: arr[i+1].id , index2: null });
+                tempOrder.push({ index1: arr[i].id , index2: null });
                 arr.map((t)=> (t.x.push(t.x.at(-1))));
             }
         

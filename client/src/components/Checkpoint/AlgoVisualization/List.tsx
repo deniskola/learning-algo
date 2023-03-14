@@ -7,6 +7,7 @@ import { ListItem } from './ListItem'
 import { motion, useAnimation } from 'framer-motion'
 // import BubbleSort from '../../../utils/BubbleSort'
  import BubbleSort from '../../../helpers/BubbleSort'
+import SelectionSort from '../../../helpers/SelectionSort'
 
 const style = {
    width: 400,
@@ -35,43 +36,43 @@ const List = () => {
     {
       id: 0,
       value: '1',
-      x: [0],
+      x: [0, 0, 0],
       opacity: [0.5]
     },
     {
       id: 1,
       value: '2',
-      x: [0],
+      x: [0, 0, 0],
       opacity: [0.5]
     },
     {
       id: 2,
       value: '5',
-      x: [0],
+      x: [0, 0, 0],
       opacity: [0.5]
     },
     {
       id: 3,
       value: '2',
-      x: [0],
+      x: [0, 0],
       opacity: [0.5]
     },
     {
       id: 4,
       value: '4',
-      x: [0],
+      x: [0, 0],
       opacity: [0.5]
     },
     {
       id: 5,
       value: '3',
-      x: [0],
+      x: [0, 0],
       opacity: [0.5]
     },
     {
       id: 6,
       value: '1',
-      x: [0],
+      x: [0, 0],
       opacity: [0.5]
     },
   ])
@@ -98,6 +99,7 @@ return (
   <>  
     <button onClick={()=> (console.log(items))}>items</button>
     <button onClick={()=> (console.log(order))}>order</button>
+    <button onClick={()=> (console.log(keyFrameTimes()))}>keyFrameTimes()</button>
     {showItems ? (
     <> 
       <div 
@@ -110,11 +112,11 @@ return (
           <motion.div
             animate={{
               x: item.x,    
-              opacity: item.opacity,  
+              opacity : item.opacity,
             }}
             transition= {{
               times: keyFrameTimes(),
-              duration: 20,
+              duration: 10,
             }}
           >
             <ListItem key={item.id} value={item.value}/>
@@ -130,13 +132,14 @@ return (
         alignItems: 'end'
       }}>
         {items.map((item:any) => (
-          <div>
+          <div style={{opacity: 0.5}}>
             <ListItem key={item.id} value={item.value} />
           </div>
         ))}
       </div>
     </>)} 
     <button onClick={()=> {BubbleSort(items, setOrder, order, setShowItems)}}>Bubble Sort</button>
+    <button onClick={()=> {SelectionSort(items, setOrder, order, setShowItems, setItems)}}>Selection Sort</button>
   </>
   )
 }
