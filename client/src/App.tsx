@@ -6,6 +6,7 @@ import Learning from './views/Learning';
 import MainView from './components/Layout/MainView';
 import Checkpoint from './views/Checkpoint';
 import List from './components/Checkpoint/AlgoVisualization/List';
+import Profile from './views/Profile';
 
 
 
@@ -20,6 +21,7 @@ function App() {
               <Route path="learning" element={<Learning/>}/> 
               <Route path="learning/:moduleid/:stepid" element={<Checkpoint/>}/>    
               <Route path="test" element={<List/>}/>    
+              <Route path="profile" element={<Profile/>}/>    
             </Route>
           </Routes>
       </Router>   
