@@ -1,4 +1,4 @@
-import  SortableListContainer  from '../components/Checkpoint/SortableList/SortableListContainer'
+import  SortableListContainer  from '../components/Checkpoint/Challenge/SortableListContainer'
 import { useParams } from 'react-router-dom';
 
 

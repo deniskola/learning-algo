@@ -77,6 +77,7 @@ const List = () => {
     },
   ])
   const [order, setOrder] = useState<Swap[]>([]);
+  const [sortingSteps, setSortingSteps] = useState<any>();
 //   const [order, setOrder] = useState(cards.map((card) => card.id))
 
 //   useEffect(() => {
@@ -89,7 +90,7 @@ const List = () => {
 
 function keyFrameTimes() {
   let times:any = []
-  order.map((x:any,i:any)=>{
+  sortingSteps.map((x:any,i:any)=>{
     times.push(i/(order.length-1))
   })
   return times
@@ -138,7 +139,7 @@ return (
         ))}
       </div>
     </>)} 
-    <button onClick={()=> {BubbleSort(items, setOrder, order, setShowItems)}}>Bubble Sort</button>
+    <button onClick={()=> {BubbleSort(items,  setShowItems, setSortingSteps)}}>Bubble Sort</button>
     <button onClick={()=> {SelectionSort(items, setOrder, order, setShowItems, setItems)}}>Selection Sort</button>
   </>
   )
