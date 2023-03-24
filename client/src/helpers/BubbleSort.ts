@@ -3,11 +3,12 @@ export interface Swap {
     index2: number | null;
 }
 
-const BubbleSort = (sortedArray:any, /*setOrder:any, order:any,*/  challengeMode:any, setSortingSteps:any) => {
+const BubbleSort = (sortedArray:any, setCountTimes:any,  challengeMode:any, setSortingSteps:any) => {
     const arr = [...sortedArray];
     let tempOrder: Swap[] = [];
     let tempSortingSteps = []
     let swapped;
+    let countTimes = 0;
 
     do {
         swapped = false;
@@ -24,7 +25,7 @@ const BubbleSort = (sortedArray:any, /*setOrder:any, order:any,*/  challengeMode
                 swapped = true;
                 
                 //animation
-                tempOrder.push({ index1: arr[i].id , index2: arr[i+1].id });
+                countTimes++;
                 if(!challengeMode) {
                     arr[i+1].x.push(arr[i+1].x.length > 0 ? (arr[i+1].x.at(-1)+49) : 49)
                     arr.map((t)=> ((t.id !== arr[i].id && t.id !== arr[i+1].id ) && t.x.push(t.x.at(-1))))
@@ -36,7 +37,7 @@ const BubbleSort = (sortedArray:any, /*setOrder:any, order:any,*/  challengeMode
                 })
             }else {
             
-                tempOrder.push({ index1: arr[i].id , index2: null });
+                countTimes++;
                 if(!challengeMode){
                     arr.map((t)=> (t.x.push(t.x.at(-1))));
                 }
@@ -51,7 +52,8 @@ const BubbleSort = (sortedArray:any, /*setOrder:any, order:any,*/  challengeMode
         setSortingSteps([...tempSortingSteps])
     } while(swapped)
    
-    challengeMode(true);
+    // challengeMode(true);
+    setCountTimes(countTimes);
   }
 
   export default BubbleSort;

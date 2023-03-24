@@ -8,6 +8,7 @@ import { Card } from './SortableItem'
 import { Grid } from '@mui/material'
 import BubbleSort from '../../../helpers/BubbleSort'
 import arraysEqual from '../../../utils/compareArraysOfObjects'
+import VerticalLinearStepper from './Stepper'
 
 const style = {
   width: 400,
@@ -61,6 +62,8 @@ const SortableListContainer = () => {
   const [stepCount, setStepCount] = useState<any>(0);
   const [challengeInfo, setChallengeInfo] = useState<any>([]);
   const [sortingSteps, setSortingSteps] = useState<any>();
+  const [countTimes, setCountTimes] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setCards((prevCards: Item[]) =>
       update(prevCards, {
@@ -110,10 +113,13 @@ const SortableListContainer = () => {
       tempChallengeInfo.push("error");
         setChallengeInfo([...tempChallengeInfo])
     }
+    setActiveStep((prevActiveStep:any) => prevActiveStep + 1);
   }
 
 return (
   <>
+  <Grid container spacing={2}>
+  <Grid item xs={8}>
     <DndProvider backend={HTML5Backend}>
       <div style={{width: 400,
                   display: 'flex',
@@ -123,21 +129,22 @@ return (
                     {cards.map((card, i) => renderCard(card, i))}
       </div>
     </DndProvider>
-    
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
+    </Grid>
+    <Grid item xs={4}>
+        <VerticalLinearStepper challengeInfo={challengeInfo} activeStep={activeStep} setActiveStep={setActiveStep}/>
+      </Grid>
+      </Grid>
+      {/* <Grid item xs={4}> */}
       {challengeStatus === 0 
         ? <button onClick={() => {setChallengeStatus(1) 
-          BubbleSort(cards,  true, setSortingSteps)
+          BubbleSort(cards, setCountTimes, true, setSortingSteps)
         }}>START</button>
         : <button onClick={goToNextStep}>NEXT</button>
         }
        
-      </Grid>
-      <Grid item xs={4}>
-        {challengeInfo.map((cI:any)=> <div>{cI}</div>)}
-      </Grid>
-    </Grid>
+      {/* </Grid> */}
+      
+   
   </>
   )
 }

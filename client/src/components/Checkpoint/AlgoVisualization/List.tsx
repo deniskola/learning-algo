@@ -32,6 +32,8 @@ interface Swap {
 
 const List = () => {
   const [showItems, setShowItems] = useState(false);
+  const [sortingSteps, setSortingSteps] = useState([])
+  const [countTimes, setCountTimes] = useState<any>(0)
   const [items, setItems] = useState<any>([
     {
       id: 0,
@@ -77,7 +79,6 @@ const List = () => {
     },
   ])
   const [order, setOrder] = useState<Swap[]>([]);
-  const [sortingSteps, setSortingSteps] = useState<any>();
 //   const [order, setOrder] = useState(cards.map((card) => card.id))
 
 //   useEffect(() => {
@@ -90,9 +91,9 @@ const List = () => {
 
 function keyFrameTimes() {
   let times:any = []
-  sortingSteps.map((x:any,i:any)=>{
-    times.push(i/(order.length-1))
-  })
+  for(let i:any; i < countTimes+1; i++){
+    times.push(i/order.length-1)
+  }
   return times
 }
 
@@ -139,14 +140,10 @@ return (
         ))}
       </div>
     </>)} 
-    <button onClick={()=> {BubbleSort(items,  setShowItems, setSortingSteps)}}>Bubble Sort</button>
+    <button onClick={()=> {BubbleSort(items, setCountTimes,  false, setSortingSteps); setShowItems(true) }}>Bubble Sort</button>
     <button onClick={()=> {SelectionSort(items, setOrder, order, setShowItems, setItems)}}>Selection Sort</button>
   </>
   )
 }
 
 export default List;
-
-
-
-
