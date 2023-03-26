@@ -11,7 +11,7 @@ export type Items = Array<Item>
 
 //swap
 
-export type Swap = {index1: number, index2: number} | null;
+export type Swap = {item1: number, item2: number} | null;
 
 //sorting steps
 
@@ -31,6 +31,9 @@ export type UserSortingSteps = Array<UserSortingSteps>;
 
 //challenge info
 
-export type ChallengeInfo = Array<string>;
+export type ChallengeInfo = Array<{
+    message: string;
+    swap: Swap
+}> 
     
 

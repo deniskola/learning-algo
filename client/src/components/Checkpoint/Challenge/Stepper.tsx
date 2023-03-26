@@ -17,16 +17,17 @@ const VerticalLinearStepper:React.FC<VerticalLinearStepperProps> = ({challengeIn
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Stepper activeStep={activeStep} orientation="vertical">
-        {challengeInfo.map((step:string, index:number) => (
+        {challengeInfo.map((step, index) => (
           <Step key={index}>
             <StepLabel
-            //   optional={
-            //     index === 2 ? (
-            //       <Typography variant="caption">Last step</Typography>
-            //     ) : null
-            //   }
+                optional={
+                    step.swap ? <Typography variant="caption" color={step.message === 'error' ? 'error': 'grey'}>swap {step.swap.item1} with {step.swap.item2}</Typography>
+                    : <Typography variant="caption" color={step.message === 'error' ? 'error': 'grey'}>no swap</Typography>
+                }
+                error={step.message === 'error'}
+              
             >
-              {step}
+              {step.message}
             </StepLabel>
             <StepContent>
               <Typography>lorem ipsum</Typography>

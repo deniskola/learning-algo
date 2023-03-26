@@ -92,19 +92,21 @@ const SortableListContainer: React.FC = () => {
     setStepCount(stepCount + 1)
 
     var tempChallengeInfo = [...challengeInfo];
-    
-    if(Array.isArray(sortingSteps) && sortingSteps[stepCount] && sortingSteps[stepCount].array && arraysEqual(sortingSteps[stepCount].array, userSortingSteps[stepCount])){
-        tempChallengeInfo.push("correct");
-        setChallengeInfo([...tempChallengeInfo])
-    }else {
-      tempChallengeInfo.push("error");
-        setChallengeInfo([...tempChallengeInfo])
+    if(Array.isArray(sortingSteps) && sortingSteps[stepCount] && sortingSteps[stepCount].array){
+      if(arraysEqual(sortingSteps[stepCount].array, userSortingSteps[stepCount])){
+          tempChallengeInfo.push({message: "correct", swap : sortingSteps[stepCount].swap });
+          setChallengeInfo([...tempChallengeInfo])
+      }else {
+        tempChallengeInfo.push({message: "error", swap : sortingSteps[stepCount].swap });
+          setChallengeInfo([...tempChallengeInfo])
+      }
     }
     setActiveStep((prevActiveStep:number) => prevActiveStep + 1);
   }
 
 return (
   <>
+  
   <Grid container spacing={2}>
   <Grid item xs={8}>
     <DndProvider backend={HTML5Backend}>
@@ -116,18 +118,20 @@ return (
                     {cards.map((card, i) => renderCard(card, i))}
       </div>
     </DndProvider>
+    <button onClick={()=> console.log(challengeInfo)}>challengeInfo</button>
+    {challengeStatus === 0 
+        ? <button onClick={() => {setChallengeStatus(1) 
+          BubbleSort(cards, setCountTimes, true, setSortingSteps)
+        }}>START</button>
+        : <button onClick={goToNextStep}>NEXT</button>
+        }
     </Grid>
     <Grid item xs={4}>
         <VerticalLinearStepper challengeInfo={challengeInfo} activeStep={activeStep}/>
       </Grid>
       </Grid>
       {/* <Grid item xs={4}> */}
-      {challengeStatus === 0 
-        ? <button onClick={() => {setChallengeStatus(1) 
-          BubbleSort(cards, setCountTimes, true, setSortingSteps)
-        }}>START</button>
-        : <button onClick={goToNextStep}>NEXT</button>
-        }
+      
        
       {/* </Grid> */}
       
