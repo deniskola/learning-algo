@@ -1,4 +1,4 @@
-import type { Identifier, XYCoord } from 'dnd-core'
+import type { Identifier } from 'dnd-core'
 import type { FC } from 'react'
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
@@ -16,7 +16,7 @@ const style = {
 }
 
 export interface CardProps {
-  id: any
+  id: number
   value: string
   index: number
   moveCard: (dragIndex: number, hoverIndex: number) => void
@@ -52,33 +52,6 @@ export const Card: FC<CardProps> = ({ id, value, index, moveCard }) => {
       if (dragIndex === hoverIndex) {
         return
       }
-
-    //   // Determine rectangle on screen
-    //   const hoverBoundingRect = ref.current?.getBoundingClientRect()
-
-    //   // Get vertical middle
-    //   const hoverMiddleY =
-    //     (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-
-    //   // Determine mouse position
-    //   const clientOffset = monitor.getClientOffset()
-
-    //   // Get pixels to the top
-    //   const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
-
-    //   // Only perform the move when the mouse has crossed half of the items height
-    //   // When dragging downwards, only move when the cursor is below 50%
-    //   // When dragging upwards, only move when the cursor is above 50%
-
-    //   // Dragging downwards
-    //   if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-    //     return
-    //   }
-
-    //   // Dragging upwards
-    //   if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-    //     return
-    //   }
 
       // Time to actually perform the action
       moveCard(dragIndex, hoverIndex)

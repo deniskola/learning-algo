@@ -1,13 +1,9 @@
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import update from 'immutability-helper'
-import { FC, useEffect } from 'react'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { ListItem } from './ListItem'
-import { motion, useAnimation } from 'framer-motion'
-// import BubbleSort from '../../../utils/BubbleSort'
- import BubbleSort from '../../../helpers/BubbleSort'
+import { motion } from 'framer-motion'
+import BubbleSort from '../../../helpers/BubbleSort'
 import SelectionSort from '../../../helpers/SelectionSort'
+import { Items, SortingSteps } from '../../../types/checkpoint'
 
 const style = {
    width: 400,
@@ -31,26 +27,26 @@ interface Swap {
 }
 
 const List = () => {
-  const [showItems, setShowItems] = useState(false);
-  const [sortingSteps, setSortingSteps] = useState([])
-  const [countTimes, setCountTimes] = useState<any>(0)
-  const [items, setItems] = useState<any>([
+  const [showItems, setShowItems] = useState<boolean>(false);
+  const [sortingSteps, setSortingSteps] = useState<SortingSteps>([])
+  const [countTimes, setCountTimes] = useState<number>(0)
+  const [items, setItems] = useState<Items>([
     {
       id: 0,
       value: '1',
-      x: [0, 0, 0],
+      x: [0, 0],
       opacity: [0.5]
     },
     {
       id: 1,
       value: '2',
-      x: [0, 0, 0],
+      x: [0, 0],
       opacity: [0.5]
     },
     {
       id: 2,
       value: '5',
-      x: [0, 0, 0],
+      x: [0, 0],
       opacity: [0.5]
     },
     {
@@ -90,17 +86,20 @@ const List = () => {
 //   }, [order])
 
 function keyFrameTimes() {
-  let times:any = []
-  for(let i:any; i < countTimes+1; i++){
-    times.push(i/order.length-1)
+  const times: number[] = [];
+
+  for (let i = 0; i < countTimes; i++) {
+    const value = (i + 1) / countTimes;
+    times.push(value);
   }
-  return times
+
+  return times;
 }
 
 return (
   <>  
     <button onClick={()=> (console.log(items))}>items</button>
-    <button onClick={()=> (console.log(order))}>order</button>
+    <button onClick={()=> (console.log(countTimes))}>countTimes</button>
     <button onClick={()=> (console.log(keyFrameTimes()))}>keyFrameTimes()</button>
     {showItems ? (
     <> 
@@ -110,7 +109,7 @@ return (
         flexDirection: 'row',
         alignItems: 'end'
       }}>
-        {items.map((item:any) => (
+        {items.map((item) => (
           <motion.div
             animate={{
               x: item.x,    
@@ -133,7 +132,7 @@ return (
         flexDirection: 'row',
         alignItems: 'end'
       }}>
-        {items.map((item:any) => (
+        {items.map((item) => (
           <div style={{opacity: 0.5}}>
             <ListItem key={item.id} value={item.value} />
           </div>

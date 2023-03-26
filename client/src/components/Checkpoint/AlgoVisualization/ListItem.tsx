@@ -1,8 +1,3 @@
-import type { Identifier, XYCoord } from 'dnd-core'
-import type { FC } from 'react'
-import { useRef } from 'react'
-import { useDrag, useDrop } from 'react-dnd'
-import { motion } from 'framer-motion'
 
 export const ItemTypes = {
     CARD: 'card',
@@ -20,18 +15,11 @@ export interface ListItemProps {
   value: string
 }
 
-interface DragItem {
-  index: number
-  id: string
-  type: string
-}
-
-export const ListItem: FC<any> = ({ value }) => {
+export const ListItem: React.FC<ListItemProps> = ({ value }) => {
  
 
   return (
     <div 
-        // animate = {{x:100}}
         style={{ ...style, height: `${parseInt(value)*50}px`, backgroundColor: "#041014", color: "whitesmoke" }}
     >
        {value}

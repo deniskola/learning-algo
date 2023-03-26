@@ -1,32 +1,18 @@
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import update from 'immutability-helper'
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useCallback, useState } from 'react'
-
 import { Card } from './SortableItem'
 import { Grid } from '@mui/material'
 import BubbleSort from '../../../helpers/BubbleSort'
 import arraysEqual from '../../../utils/compareArraysOfObjects'
 import VerticalLinearStepper from './Stepper'
+import { ChallengeInfo, Item, Items, SortingSteps, UserSortingSteps } from '../../../types/checkpoint'
 
-const style = {
-  width: 400,
-  display: 'flex',
-  flexDirection: 'row'
-}
 
-export interface Item {
-  id: number
-  value: string
-}
-
-export interface ContainerState {
-  cards: Item[]
-}
-
-const SortableListContainer = () => {
-  const [cards, setCards] = useState([
+const SortableListContainer: React.FC = () => {
+  const [cards, setCards] = useState<Items>([
     {
       id: 0,
       value: '1',
@@ -56,14 +42,14 @@ const SortableListContainer = () => {
       value: '1',
     },
   ])
-  const [userSortingSteps, setUserSortingSteps]= useState<any>([]);
+  const [userSortingSteps, setUserSortingSteps]= useState<UserSortingSteps>([]);
   const [order, setOrder] = useState(cards.map((card) => card.id));
   const [challengeStatus, setChallengeStatus] = useState<number>(0);
-  const [stepCount, setStepCount] = useState<any>(0);
-  const [challengeInfo, setChallengeInfo] = useState<any>([]);
-  const [sortingSteps, setSortingSteps] = useState<any>();
-  const [countTimes, setCountTimes] = useState(0);
-  const [activeStep, setActiveStep] = useState(0);
+  const [stepCount, setStepCount] = useState<number>(0);
+  const [challengeInfo, setChallengeInfo] = useState<ChallengeInfo>([]);
+  const [sortingSteps, setSortingSteps] = useState<SortingSteps>();
+  const [countTimes, setCountTimes] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setCards((prevCards: Item[]) =>
       update(prevCards, {
@@ -100,20 +86,21 @@ const SortableListContainer = () => {
   }, [order])
   
   const goToNextStep = () => {
-    userSortingSteps.push(cards)
+    var userSortingStep: any = cards;
+    userSortingSteps.push(userSortingStep)
     setUserSortingSteps(userSortingSteps);
     setStepCount(stepCount + 1)
-    
+
     var tempChallengeInfo = [...challengeInfo];
     
-    if(arraysEqual(sortingSteps[stepCount].array, userSortingSteps[stepCount])){
+    if(Array.isArray(sortingSteps) && sortingSteps[stepCount] && sortingSteps[stepCount].array && arraysEqual(sortingSteps[stepCount].array, userSortingSteps[stepCount])){
         tempChallengeInfo.push("correct");
         setChallengeInfo([...tempChallengeInfo])
     }else {
       tempChallengeInfo.push("error");
         setChallengeInfo([...tempChallengeInfo])
     }
-    setActiveStep((prevActiveStep:any) => prevActiveStep + 1);
+    setActiveStep((prevActiveStep:number) => prevActiveStep + 1);
   }
 
 return (
@@ -131,7 +118,7 @@ return (
     </DndProvider>
     </Grid>
     <Grid item xs={4}>
-        <VerticalLinearStepper challengeInfo={challengeInfo} activeStep={activeStep} setActiveStep={setActiveStep}/>
+        <VerticalLinearStepper challengeInfo={challengeInfo} activeStep={activeStep}/>
       </Grid>
       </Grid>
       {/* <Grid item xs={4}> */}
