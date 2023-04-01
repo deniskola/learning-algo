@@ -87,9 +87,9 @@ const SortableListContainer: React.FC = () => {
   
   const goToNextStep = () => {
     var userSortingStep: any = cards;
-    userSortingSteps.push(userSortingStep)
+    userSortingSteps.push(userSortingStep);
     setUserSortingSteps(userSortingSteps);
-    setStepCount(stepCount + 1)
+    setStepCount(stepCount + 1);
 
     var tempChallengeInfo = [...challengeInfo];
     if(Array.isArray(sortingSteps) && sortingSteps[stepCount] && sortingSteps[stepCount].array){
@@ -102,6 +102,16 @@ const SortableListContainer: React.FC = () => {
       }
     }
     setActiveStep((prevActiveStep:number) => prevActiveStep + 1);
+  }
+  const goBack = () =>{
+    var tempCards = null;
+    setUserSortingSteps(userSortingSteps.slice(0, -1))
+    setChallengeInfo(challengeInfo.slice(0, -1));
+    if(Array.isArray(sortingSteps) && sortingSteps[stepCount -2] && sortingSteps[stepCount -2].array){
+      tempCards = sortingSteps[stepCount -2].array
+      setCards([...tempCards])
+    } 
+    setStepCount(stepCount -1);
   }
 
 return (
@@ -125,6 +135,8 @@ return (
         }}>START</button>
         : <button onClick={goToNextStep}>NEXT</button>
         }
+        <button onClick={goBack}>GO BACK</button>
+        <button onClick={()=> console.log(stepCount)}>stepCount</button>
     </Grid>
     <Grid item xs={4}>
         <VerticalLinearStepper challengeInfo={challengeInfo} activeStep={activeStep}/>
