@@ -10,8 +10,14 @@ import arraysEqual from '../../../utils/compareArraysOfObjects'
 import VerticalLinearStepper from './Stepper'
 import { ChallengeInfo, Item, Items, SortingSteps, UserSortingSteps } from '../../../types/checkpoint'
 
+interface SortableListContainerProps  {
+  challengeInfo: ChallengeInfo;
+  setChallengeInfo: React.Dispatch<React.SetStateAction<ChallengeInfo>>;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+  setCompleted: React.Dispatch<React.SetStateAction<number>>;
+}
 
-const SortableListContainer: React.FC = () => {
+const SortableListContainer: React.FC<SortableListContainerProps> = ({challengeInfo, setChallengeInfo, setActiveStep, setCompleted}) => {
   const [cards, setCards] = useState<Items>([
     {
       id: 0,
@@ -46,10 +52,9 @@ const SortableListContainer: React.FC = () => {
   const [order, setOrder] = useState(cards.map((card) => card.id));
   const [challengeStatus, setChallengeStatus] = useState<number>(0);
   const [stepCount, setStepCount] = useState<number>(0);
-  const [challengeInfo, setChallengeInfo] = useState<ChallengeInfo>([]);
   const [sortingSteps, setSortingSteps] = useState<SortingSteps>();
   const [countTimes, setCountTimes] = useState<number>(0);
-  const [activeStep, setActiveStep] = useState<number>(0);
+  
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setCards((prevCards: Item[]) =>
       update(prevCards, {
@@ -96,6 +101,7 @@ const SortableListContainer: React.FC = () => {
       if(arraysEqual(sortingSteps[stepCount].array, userSortingSteps[stepCount])){
           tempChallengeInfo.push({message: "correct", swap : sortingSteps[stepCount].swap });
           setChallengeInfo([...tempChallengeInfo])
+          setCompleted((prevProgress) => (prevProgress >= 100 ? 100 : prevProgress + 100/sortingSteps.length))
       }else {
         tempChallengeInfo.push({message: "error", swap : sortingSteps[stepCount].swap });
           setChallengeInfo([...tempChallengeInfo])
@@ -116,9 +122,6 @@ const SortableListContainer: React.FC = () => {
 
 return (
   <>
-  
-  <Grid container spacing={2}>
-  <Grid item xs={8}>
     <DndProvider backend={HTML5Backend}>
       <div style={{width: 400,
                   display: 'flex',
@@ -137,17 +140,6 @@ return (
         }
         <button onClick={goBack}>GO BACK</button>
         <button onClick={()=> console.log(stepCount)}>stepCount</button>
-    </Grid>
-    <Grid item xs={4}>
-        <VerticalLinearStepper challengeInfo={challengeInfo} activeStep={activeStep}/>
-      </Grid>
-      </Grid>
-      {/* <Grid item xs={4}> */}
-      
-       
-      {/* </Grid> */}
-      
-   
   </>
   )
 }
