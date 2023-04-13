@@ -15,9 +15,10 @@ interface SortableListContainerProps  {
   setChallengeInfo: React.Dispatch<React.SetStateAction<ChallengeInfo>>;
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
   setCompleted: React.Dispatch<React.SetStateAction<number>>;
+  setErrorCounter: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SortableListContainer: React.FC<SortableListContainerProps> = ({challengeInfo, setChallengeInfo, setActiveStep, setCompleted}) => {
+const SortableListContainer: React.FC<SortableListContainerProps> = ({challengeInfo, setChallengeInfo, setActiveStep, setCompleted, setErrorCounter}) => {
   const [cards, setCards] = useState<Items>([
     {
       id: 0,
@@ -105,6 +106,7 @@ const SortableListContainer: React.FC<SortableListContainerProps> = ({challengeI
       }else {
         tempChallengeInfo.push({message: "error", swap : sortingSteps[stepCount].swap });
           setChallengeInfo([...tempChallengeInfo])
+          setErrorCounter((prevProgress) => (prevProgress >= 100 ? 100 : prevProgress + 33.3))
       }
     }
     setActiveStep((prevActiveStep:number) => prevActiveStep + 1);

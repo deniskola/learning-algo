@@ -13,17 +13,19 @@ const Checkpoint = () => {
     const [challengeInfo, setChallengeInfo] = useState<ChallengeInfo>([]);
     const [activeStep, setActiveStep] = useState<number>(0);
     const [completed, setCompleted] = useState<number>(0);
+    const [errorCounter, setErrorCounter] = useState<number>(0);
     return (
         <Grid container spacing={2}>
             <Grid item xs={10}>
-                <ProgressInfo completed={completed}/>
+                <ProgressInfo completed={completed} errorCounter={errorCounter}/>
             </Grid>
             <Grid item xs={6}>
                 <SortableListContainer 
                     challengeInfo={challengeInfo} 
                     setChallengeInfo={setChallengeInfo} 
                     setActiveStep={setActiveStep}
-                    setCompleted={setCompleted}    
+                    setCompleted={setCompleted}  
+                    setErrorCounter={setErrorCounter}  
                 />
             </Grid>
             <Grid item xs={4}>
