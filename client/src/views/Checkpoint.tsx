@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Divider, Grid } from '@mui/material';
 import  SortableListContainer  from '../components/Checkpoint/Challenge/SortableListContainer'
 import { useParams } from 'react-router-dom';
 import VerticalLinearStepper from '../components/Checkpoint/Challenge/Stepper';
@@ -24,10 +24,10 @@ const Checkpoint = () => {
       }, [challengeInfo]);
     return (
         <Grid container spacing={2} style={{ height: '100%' }}>
-            <Grid item xs={10} >
+            <Grid item xs={12} >
                 <ProgressInfo completed={completed} errorCounter={errorCounter}/>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={9}>
                 <SortableListContainer 
                     challengeInfo={challengeInfo} 
                     setChallengeInfo={setChallengeInfo} 
