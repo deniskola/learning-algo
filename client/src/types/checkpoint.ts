@@ -26,7 +26,7 @@ export type SortingSteps = Array<SortingStep> | undefined;
 
 export type UserSortingStep = Items;
 
-export type UserSortingSteps = Array<UserSortingSteps>;
+export type UserSortingSteps = Array<UserSortingStep>;
 
 
 //challenge info

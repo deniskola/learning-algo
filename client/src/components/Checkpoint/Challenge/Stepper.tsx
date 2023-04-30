@@ -7,12 +7,14 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { ChallengeInfo } from '../../../types/checkpoint';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
-interface VerticalLinearStepperProps {
-    challengeInfo: ChallengeInfo;
-    activeStep: number
-}
-const VerticalLinearStepper:React.FC<VerticalLinearStepperProps> = ({challengeInfo ,activeStep}) => {
+
+const VerticalLinearStepper:React.FC = () => {
+  const dispatch = useDispatch();
+  const activeStep = useSelector((state: RootState) => state.checkpoint.activeStep);
+  const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
   
   return (
     <Box sx={{ maxWidth: 400 }}>

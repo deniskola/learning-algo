@@ -4,15 +4,13 @@ import Divider from '@mui/material/Divider';
 import { Box, Chip, LinearProgress, Typography } from '@mui/material';
 import CircularProgressWithLabel from './CircularProgress';
 import ErrorIcon from '@mui/icons-material/Error';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 
-interface ProgressInfoProps {
-    completed: number,
-    errorCounter: number
-}
-
-const ProgressInfo:React.FC<ProgressInfoProps> = ({completed, errorCounter}) => {
-    
+const ProgressInfo:React.FC = () => {
+  const completed = useSelector((state: RootState) => state.checkpoint.completed);
+  const errorCounter = useSelector((state: RootState) => state.checkpoint.errorCounter);
   return (
     <div>
       <Stack direction="row" spacing={2}>

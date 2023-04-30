@@ -5,16 +5,16 @@ import VerticalLinearStepper from '../components/Checkpoint/Challenge/Stepper';
 import { useState, useRef, useEffect } from 'react';
 import { ChallengeInfo } from '../types/checkpoint';
 import ProgressInfo from '../components/Checkpoint/Challenge/ProgressInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 
 
 const Checkpoint = () => {
     const params = useParams();
     const challengeInfoRef = useRef<HTMLDivElement>(null);
-    const [challengeInfo, setChallengeInfo] = useState<ChallengeInfo>([]);
-    const [activeStep, setActiveStep] = useState<number>(0);
-    const [completed, setCompleted] = useState<number>(0);
-    const [errorCounter, setErrorCounter] = useState<number>(0);
+    const dispatch = useDispatch();
+    const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
 
     useEffect(() => {
         const container = challengeInfoRef.current;
@@ -25,19 +25,13 @@ const Checkpoint = () => {
     return (
         <Grid container spacing={2} style={{ height: '100%' }}>
             <Grid item xs={12} >
-                <ProgressInfo completed={completed} errorCounter={errorCounter}/>
+                <ProgressInfo />
             </Grid>
             <Grid item xs={9}>
-                <SortableListContainer 
-                    challengeInfo={challengeInfo} 
-                    setChallengeInfo={setChallengeInfo} 
-                    setActiveStep={setActiveStep}
-                    setCompleted={setCompleted}  
-                    setErrorCounter={setErrorCounter}  
-                />
+                <SortableListContainer />
             </Grid>
             <Grid item xs={3} style={{ maxHeight: '400px', overflowY: 'scroll' }} ref={challengeInfoRef} >
-                <VerticalLinearStepper challengeInfo={challengeInfo} activeStep={activeStep} />
+                <VerticalLinearStepper />
             </Grid>
         </Grid>
     );

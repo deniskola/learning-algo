@@ -4,21 +4,24 @@ import update from 'immutability-helper'
 import { useEffect } from 'react'
 import { useCallback, useState } from 'react'
 import { Card } from './SortableItem'
-import { Grid } from '@mui/material'
 import BubbleSort from '../../../helpers/BubbleSort'
 import arraysEqual from '../../../utils/compareArraysOfObjects'
-import VerticalLinearStepper from './Stepper'
 import { ChallengeInfo, Item, Items, SortingSteps, UserSortingSteps } from '../../../types/checkpoint'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
+import { setActiveStep, setChallengeInfo, setChallengeStatus, setCompleted, setErrorCounter, setStepCount } from '../../../redux/slices/checkpointSlice'
 
-interface SortableListContainerProps  {
-  challengeInfo: ChallengeInfo;
-  setChallengeInfo: React.Dispatch<React.SetStateAction<ChallengeInfo>>;
-  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
-  setCompleted: React.Dispatch<React.SetStateAction<number>>;
-  setErrorCounter: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const SortableListContainer: React.FC<SortableListContainerProps> = ({challengeInfo, setChallengeInfo, setActiveStep, setCompleted, setErrorCounter}) => {
+  
+const SortableListContainer: React.FC = () => {
+  const dispatch = useDispatch();
+  const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
+  const completed = useSelector((state: RootState) => state.checkpoint.completed);
+  const errorCounter = useSelector((state: RootState) => state.checkpoint.errorCounter);
+  const activeStep = useSelector((state: RootState) => state.checkpoint.activeStep);
+  // const userSortingSteps = useSelector((state: RootState) => state.checkpoint.userSortingSteps);
+  const challengeStatus = useSelector((state: RootState) => state.checkpoint.challengeStatus);
+  const stepCount = useSelector((state: RootState) => state.checkpoint.stepCount);
+  // const sortingSteps = useSelector((state: RootState) => state.checkpoint.sortingSteps);
   const [cards, setCards] = useState<Items>([
     {
       id: 0,
@@ -51,8 +54,8 @@ const SortableListContainer: React.FC<SortableListContainerProps> = ({challengeI
   ])
   const [userSortingSteps, setUserSortingSteps]= useState<UserSortingSteps>([]);
   const [order, setOrder] = useState(cards.map((card) => card.id));
-  const [challengeStatus, setChallengeStatus] = useState<number>(0);
-  const [stepCount, setStepCount] = useState<number>(0);
+  // const [challengeStatus, setChallengeStatus] = useState<number>(0);
+  // const [stepCount, setStepCount] = useState<number>(0);
   const [sortingSteps, setSortingSteps] = useState<SortingSteps>();
   const [countTimes, setCountTimes] = useState<number>(0);
   
@@ -95,31 +98,31 @@ const SortableListContainer: React.FC<SortableListContainerProps> = ({challengeI
     var userSortingStep: any = cards;
     userSortingSteps.push(userSortingStep);
     setUserSortingSteps(userSortingSteps);
-    setStepCount(stepCount + 1);
+    dispatch(setStepCount(stepCount + 1));
 
     var tempChallengeInfo = [...challengeInfo];
     if(Array.isArray(sortingSteps) && sortingSteps[stepCount] && sortingSteps[stepCount].array){
       if(arraysEqual(sortingSteps[stepCount].array, userSortingSteps[stepCount])){
           tempChallengeInfo.push({message: "correct", swap : sortingSteps[stepCount].swap });
-          setChallengeInfo([...tempChallengeInfo])
-          setCompleted((prevProgress) => (prevProgress >= 100 ? 100 : prevProgress + 100/sortingSteps.length))
+          dispatch(setChallengeInfo([...tempChallengeInfo]))
+          dispatch(setCompleted(completed >= 100 ? 100 : completed + 100/sortingSteps.length));
       }else {
         tempChallengeInfo.push({message: "error", swap : sortingSteps[stepCount].swap });
-          setChallengeInfo([...tempChallengeInfo])
-          setErrorCounter((prevProgress) => (prevProgress >= 100 ? 100 : prevProgress + 33.3))
+          dispatch(setChallengeInfo([...tempChallengeInfo]))
+          dispatch(setErrorCounter(errorCounter >= 100 ? 100 : errorCounter + 33.3))
       }
     }
-    setActiveStep((prevActiveStep:number) => prevActiveStep + 1);
+    dispatch(setActiveStep(activeStep + 1));
   }
   const goBack = () =>{
     var tempCards = null;
-    setUserSortingSteps(userSortingSteps.slice(0, -1))
-    setChallengeInfo(challengeInfo.slice(0, -1));
+    setUserSortingSteps(userSortingSteps.slice(0, -1));
+    dispatch(setChallengeInfo(challengeInfo.slice(0, -1)));
     if(Array.isArray(sortingSteps) && sortingSteps[stepCount -2] && sortingSteps[stepCount -2].array){
       tempCards = sortingSteps[stepCount -2].array
       setCards([...tempCards])
     } 
-    setStepCount(stepCount -1);
+    dispatch(setStepCount(stepCount -1));
   }
 
 return (
@@ -135,7 +138,7 @@ return (
     </DndProvider>
     <button onClick={()=> console.log(challengeInfo)}>challengeInfo</button>
     {challengeStatus === 0 
-        ? <button onClick={() => {setChallengeStatus(1) 
+        ? <button onClick={() => {dispatch(setChallengeStatus(1)) 
           BubbleSort(cards, setCountTimes, true, setSortingSteps)
         }}>START</button>
         : <button onClick={goToNextStep}>NEXT</button>
