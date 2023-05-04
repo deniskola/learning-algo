@@ -5,6 +5,7 @@ export interface Swap {
 
 const BubbleSort = (sortedArray:any, setCountTimes:any,  challengeMode:any, setSortingSteps:any) => {
     const arr = [...sortedArray];
+    debugger;
     let tempOrder: Swap[] = [];
     let tempSortingSteps = []
     let swapped;

@@ -1,25 +1,48 @@
 {
-    "test": "test",
     "challengeKinds": [
         {
             "id": 1,
             "kind": "sorting",
             "modules": [
                 {
-                    "name": "selection sort",
-                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
+                    "name": "bubble-sort",
+                    "function-id": "FUNC1",
+                    "steps": [
+                       {
+                         "content-type": "lesson",
+                         "name": "entry-lesson",
+                         "content": "bllabllablla"
+                       },
+                       {
+                        "content-type": "algo-visualization",
+                        "name": "visualization"
+                       },
+                       {
+                        "content-type": "challenge",
+                        "name": "challenge"
+                       }
+                    ]
+
                 },
                 {
-                    "name": "insertion sort",
-                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
-                },
-                {
-                    "name": "mergesort",
-                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
-                },
-                {
-                    "name": "quicksort",
-                    "steps": ["entry lesson", "challenge 1", "challenge 2"]
+                    "name": "selection-sort",
+                    "function-id": "FUNC2",
+                    "steps": [
+                       {
+                         "content-type": "lesson",
+                         "name": "entry-lesson",
+                         "content": "bllabllablla"
+                       },
+                       {
+                        "content-type": "algo-visualization",
+                        "name": "visualization"
+                       },
+                       {
+                        "content-type": "challenge",
+                        "name": "challenge"
+                       }
+                    ]
+
                 }
             ]
         },
@@ -27,6 +50,11 @@
             "id": 2,
             "kind": "searching"
         }
-    ]
+    ],
+    "functions": {
+        "FUNC1" : "BubbleSort",
+        "FUNC2" : "SelectionSort"
+
+    }
 
 }

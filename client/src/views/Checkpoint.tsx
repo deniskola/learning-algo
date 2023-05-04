@@ -1,39 +1,10 @@
-import { Divider, Grid } from '@mui/material';
-import  SortableListContainer  from '../components/Checkpoint/Challenge/SortableListContainer'
-import { useParams } from 'react-router-dom';
-import VerticalLinearStepper from '../components/Checkpoint/Challenge/Stepper';
-import { useState, useRef, useEffect } from 'react';
-import { ChallengeInfo } from '../types/checkpoint';
-import ProgressInfo from '../components/Checkpoint/Challenge/ProgressInfo';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-
-
-
+import { useParams } from "react-router-dom";
+import Challenge from "../components/Checkpoint/Challenge/Challenge";
+import data from "../mockData/mockData.json"
 const Checkpoint = () => {
     const params = useParams();
-    const challengeInfoRef = useRef<HTMLDivElement>(null);
-    const dispatch = useDispatch();
-    const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
-
-    useEffect(() => {
-        const container = challengeInfoRef.current;
-        if (container) {
-          container.scrollTop = container.scrollHeight;
-        }
-      }, [challengeInfo]);
     return (
-        <Grid container spacing={2} style={{ height: '100%' }}>
-            <Grid item xs={12} >
-                <ProgressInfo />
-            </Grid>
-            <Grid item xs={9}>
-                <SortableListContainer />
-            </Grid>
-            <Grid item xs={3} style={{ maxHeight: '400px', overflowY: 'scroll' }} ref={challengeInfoRef} >
-                <VerticalLinearStepper />
-            </Grid>
-        </Grid>
+        <></> 
     );
 }
 

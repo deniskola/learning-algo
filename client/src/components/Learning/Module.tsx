@@ -43,8 +43,8 @@ const Module = ({mod}:any) => {
                         </Link>
                         <TimelineConnector />
                       </TimelineSeparator>
-                      <Link to={`${mod.name}/${x}`}>
-                        <TimelineContent>{x}</TimelineContent>
+                      <Link to={`${mod.name}/${x.name}`}>
+                        <TimelineContent>{x.name}</TimelineContent>
                       </Link>
                     </TimelineItem>
                     

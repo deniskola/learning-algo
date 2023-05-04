@@ -10,9 +10,11 @@ import { ChallengeInfo, Item, Items, SortingSteps, UserSortingSteps } from '../.
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 import { setActiveStep, setChallengeInfo, setChallengeStatus, setCompleted, setErrorCounter, setStepCount } from '../../../redux/slices/checkpointSlice'
+import { useParams } from 'react-router-dom'
 
   
 const SortableListContainer: React.FC = () => {
+  const params = useParams();
   const dispatch = useDispatch();
   const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
   const completed = useSelector((state: RootState) => state.checkpoint.completed);

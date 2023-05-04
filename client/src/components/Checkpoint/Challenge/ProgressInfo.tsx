@@ -6,16 +6,18 @@ import CircularProgressWithLabel from './CircularProgress';
 import ErrorIcon from '@mui/icons-material/Error';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
+import { useParams } from 'react-router-dom';
 
 
 const ProgressInfo:React.FC = () => {
+  const params = useParams();
   const completed = useSelector((state: RootState) => state.checkpoint.completed);
   const errorCounter = useSelector((state: RootState) => state.checkpoint.errorCounter);
   return (
     <div>
       <Stack direction="row" spacing={2}>
         <Typography variant="h5" display="block" sx={{ m: 2 }}>
-            Challenge Name
+            {params.moduleid}
         </Typography>
         <Divider orientation="vertical" flexItem />
         <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-between" }}>
