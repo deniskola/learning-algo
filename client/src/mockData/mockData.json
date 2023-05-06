@@ -5,40 +5,48 @@
             "kind": "sorting",
             "modules": [
                 {
+                    "id": 1,
                     "name": "bubble-sort",
                     "function-id": "FUNC1",
                     "steps": [
                        {
-                         "content-type": "lesson",
-                         "name": "entry-lesson",
-                         "content": "bllabllablla"
+                        "id": 1,
+                        "contentType": "lesson",
+                        "name": "entry-lesson",
+                        "content": "bllabllablla"
                        },
                        {
-                        "content-type": "algo-visualization",
+                        "id": 2,
+                        "contentType": "algo-visualization",
                         "name": "visualization"
                        },
                        {
-                        "content-type": "challenge",
+                        "id": 3,
+                        "contentType": "challenge",
                         "name": "challenge"
                        }
                     ]
 
                 },
                 {
+                    "id": 2,
                     "name": "selection-sort",
                     "function-id": "FUNC2",
                     "steps": [
                        {
-                         "content-type": "lesson",
-                         "name": "entry-lesson",
-                         "content": "bllabllablla"
+                        "id": 4,
+                        "contentType": "lesson",
+                        "name": "entry-lesson",
+                        "content": "bllabllablla"
                        },
                        {
-                        "content-type": "algo-visualization",
+                        "id": 5,
+                        "contentType": "algo-visualization",
                         "name": "visualization"
                        },
                        {
-                        "content-type": "challenge",
+                        "id": 6,
+                        "contentType": "challenge",
                         "name": "challenge"
                        }
                     ]

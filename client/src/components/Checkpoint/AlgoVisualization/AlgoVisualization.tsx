@@ -2,7 +2,7 @@
 
 const AlgoVisualization = () => {
     return (
-        <></>
+        <>algo-visualization</>
     );
 }
 

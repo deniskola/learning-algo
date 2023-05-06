@@ -19,7 +19,7 @@ function App() {
             <Route path="/" element={<MainView />}>
               <Route index element={<Home/>}/>  
               <Route path="learning" element={<Learning/>}/> 
-              <Route path="learning/:moduleid/:stepid" element={<Checkpoint/>}/>    
+              <Route path="learning/:moduleid/:checkpointid" element={<Checkpoint/>}/>    
               <Route path="test" element={<List/>}/>    
               <Route path="profile" element={<Profile/>}/>    
             </Route>
