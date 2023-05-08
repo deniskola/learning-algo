@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import profileReducer from './slices/profileSlice';
 import checkpointReducer from './slices/checkpointSlice';
+import currentModuleReducer from './slices/currentModuleSlice';
 
 const persistConfig = {
   key: 'root',
@@ -14,7 +15,8 @@ const persistedReducer = persistReducer(persistConfig, profileReducer);
 export const store = configureStore({
   reducer: {
     profile: persistedReducer,
-    checkpoint: checkpointReducer
+    checkpoint: checkpointReducer,
+    currentModule: currentModuleReducer
   },
 });
 
