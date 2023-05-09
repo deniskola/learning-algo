@@ -1,23 +1,22 @@
-import {useState} from 'react'
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import { Box, Chip, LinearProgress, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import CircularProgressWithLabel from './CircularProgress';
-import ErrorIcon from '@mui/icons-material/Error';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { useParams } from 'react-router-dom';
 
 
 const ProgressInfo:React.FC = () => {
-  const params = useParams();
+  
   const completed = useSelector((state: RootState) => state.checkpoint.completed);
   const errorCounter = useSelector((state: RootState) => state.checkpoint.errorCounter);
+  const currentCheckpoint = useSelector((state: RootState) => state.currentModule.currentCheckpoint);
   return (
     <div>
       <Stack direction="row" spacing={2}>
         <Typography variant="h5" display="block" sx={{ m: 2 }}>
-            {params.moduleid}
+            {currentCheckpoint.title}
         </Typography>
         <Divider orientation="vertical" flexItem />
         <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-between" }}>

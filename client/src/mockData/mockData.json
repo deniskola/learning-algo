@@ -13,17 +13,20 @@
                         "id": 1,
                         "contentType": "lesson",
                         "name": "entry-lesson",
+                        "title": "bubble sort: entry-lesson",
                         "content": "bllabllablla"
                        },
                        {
                         "id": 2,
                         "contentType": "algo-visualization",
-                        "name": "visualization"
+                        "name": "visualization",
+                        "title": "Bubble Sort visualization"
                        },
                        {
                         "id": 3,
                         "contentType": "challenge",
-                        "name": "challenge"
+                        "name": "challenge",
+                        "title": "Bubble Sort"
                        }
                     ]
 
@@ -37,17 +40,20 @@
                         "id": 4,
                         "contentType": "lesson",
                         "name": "entry-lesson",
+                        "title": "selection sort: entry-lesson",
                         "content": "bllabllablla"
                        },
                        {
                         "id": 5,
                         "contentType": "algo-visualization",
-                        "name": "visualization"
+                        "name": "visualization",
+                        "title": "Selection Sort visualization"
                        },
                        {
                         "id": 6,
                         "contentType": "challenge",
-                        "name": "challenge"
+                        "name": "challenge",
+                        "title": "Selection Sort"
                        }
                     ]
 

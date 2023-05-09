@@ -5,20 +5,20 @@ import AlgoVisualization from "../components/Checkpoint/AlgoVisualization/AlgoVi
 import Lesson from "../components/Checkpoint/Lesson/Lesson";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { setCurrentContentType } from "../redux/slices/currentModuleSlice";
+import { setCurrentCheckpoint } from "../redux/slices/currentModuleSlice";
 const Checkpoint = () => {
     const params = useParams();
-    const currentContentType = useSelector((state: RootState) => state.currentModule.currentContentType);
+    const currentCheckpoint = useSelector((state: RootState) => state.currentModule.currentCheckpoint);
     const dispatch = useDispatch(); 
 
     useEffect(()=>{
-        dispatch(setCurrentContentType(params))
+        dispatch(setCurrentCheckpoint(params))
     }, []);
     
 
     const CheckpointContent = () => {
-        if(currentContentType === "lesson") return <Lesson />
-        else if(currentContentType === "algo-visualization") return <AlgoVisualization/>
+        if(currentCheckpoint.contentType === "lesson") return <Lesson />
+        else if(currentCheckpoint.contentType === "algo-visualization") return <AlgoVisualization/>
         else return <Challenge/> 
     }
     return <CheckpointContent/> 
