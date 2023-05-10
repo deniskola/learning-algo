@@ -13,53 +13,25 @@ import { setActiveStep, setChallengeInfo, setChallengeStatus, setCompleted, setE
 import { useParams } from 'react-router-dom'
 
   
-const SortableListContainer: React.FC = () => {
+interface SortableListContainerProps  {
+  cards: Items;
+  setCards: any;
+  sortingSteps: any;
+}
+const SortableListContainer: React.FC<SortableListContainerProps> = ({cards, setCards, sortingSteps}) => {
   const params = useParams();
   const dispatch = useDispatch();
   const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
   const completed = useSelector((state: RootState) => state.checkpoint.completed);
   const errorCounter = useSelector((state: RootState) => state.checkpoint.errorCounter);
   const activeStep = useSelector((state: RootState) => state.checkpoint.activeStep);
-  // const userSortingSteps = useSelector((state: RootState) => state.checkpoint.userSortingSteps);
   const challengeStatus = useSelector((state: RootState) => state.checkpoint.challengeStatus);
   const stepCount = useSelector((state: RootState) => state.checkpoint.stepCount);
-  // const sortingSteps = useSelector((state: RootState) => state.checkpoint.sortingSteps);
-  const [cards, setCards] = useState<Items>([
-    {
-      id: 0,
-      value: '1',
-    },
-    {
-      id: 1,
-      value: '2',
-    },
-    {
-      id: 2,
-      value: '5',
-    },
-    {
-      id: 3,
-      value: '2',
-    },
-    {
-      id: 4,
-      value: '4',
-    },
-    {
-      id: 5,
-      value: '3',
-    },
-    {
-      id: 6,
-      value: '1',
-    },
-  ])
   const [userSortingSteps, setUserSortingSteps]= useState<UserSortingSteps>([]);
   const [order, setOrder] = useState(cards.map((card) => card.id));
-  // const [challengeStatus, setChallengeStatus] = useState<number>(0);
-  // const [stepCount, setStepCount] = useState<number>(0);
-  const [sortingSteps, setSortingSteps] = useState<SortingSteps>();
-  const [countTimes, setCountTimes] = useState<number>(0);
+  
+  
+  
   
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setCards((prevCards: Item[]) =>
@@ -139,14 +111,9 @@ return (
       </div>
     </DndProvider>
     <button onClick={()=> console.log(challengeInfo)}>challengeInfo</button>
-    {challengeStatus === 0 
-        ? <button onClick={() => {dispatch(setChallengeStatus(1)) 
-          BubbleSort(cards, setCountTimes, true, setSortingSteps)
-        }}>START</button>
-        : <button onClick={goToNextStep}>NEXT</button>
-        }
-        <button onClick={goBack}>GO BACK</button>
-        <button onClick={()=> console.log(stepCount)}>stepCount</button>
+    <button onClick={goToNextStep}>NEXT</button>
+    <button onClick={goBack}>GO BACK</button>
+    <button onClick={()=> console.log(stepCount)}>stepCount</button>
   </>
   )
 }

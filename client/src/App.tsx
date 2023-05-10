@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './views/Home';
 import Login from './views/Login';
 import Learning from './views/Learning';
-import MainView from './components/Layout/MainView';
+import MainView from './components/Shared/Layout/MainView';
 import Checkpoint from './views/Checkpoint';
 import List from './components/Checkpoint/AlgoVisualization/List';
 import Profile from './views/Profile';
