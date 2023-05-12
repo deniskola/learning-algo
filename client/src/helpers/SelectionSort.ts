@@ -1,6 +1,6 @@
 
 
-const SelectionSort = (items:any, setOrder:any,  order:any, setShowItems:any, setItems:any) => {
+const AlgoSteps = (items:any, setOrder:any,  order:any, setShowItems:any, setItems:any) => {
     const arr = [...items]
     let tempOrder: any[] = [];
     for (let i = 0; i < arr.length - 1; i++) {
@@ -31,4 +31,4 @@ const SelectionSort = (items:any, setOrder:any,  order:any, setShowItems:any, se
   }
   
 
-export default SelectionSort;
+export default AlgoSteps;

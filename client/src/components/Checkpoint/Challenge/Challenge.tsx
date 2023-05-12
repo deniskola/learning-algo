@@ -6,19 +6,17 @@ import ProgressInfo from './ProgressInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import PopupWithBackdrop from '../../Shared/PopupWithBackdrop';
-import { setChallengeStatus } from '../../../redux/slices/checkpointSlice';
-import BubbleSort from '../../../helpers/BubbleSort';
 import { Items, SortingSteps } from '../../../types/checkpoint';
-
 
 
 const Challenge = () => {
     const challengeInfoRef = useRef<HTMLDivElement>(null);
-    const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
     const [sortingSteps, setSortingSteps] = useState<SortingSteps>();
     const [countTimes, setCountTimes] = useState<number>(0);
     const currentCheckpoint = useSelector((state: RootState) => state.currentModule.currentCheckpoint);
     const dispatch = useDispatch();
+    const [sortingFunction, setSortingFunction] = useState<Function | null>(null);
+  
     const [cards, setCards] = useState<Items>([
         {
           id: 0,
@@ -50,16 +48,19 @@ const Challenge = () => {
         },
       ])
 
-    useEffect(() => {
-        const container = challengeInfoRef.current;
-        if (container) {
-          container.scrollTop = container.scrollHeight;
+      useEffect(() => {
+        async function loadSortingFunction() {
+          let algo: any;
+          algo = await import(`../../../helpers/${currentCheckpoint.title}`);
+          setSortingFunction(() => algo.default);
         }
-      }, [challengeInfo]);
-
+        loadSortingFunction();
+      }, [currentCheckpoint.title]);
 
     const handleClosePopup = () => (
-        BubbleSort(cards, setCountTimes, true, setSortingSteps)
+        sortingFunction && 
+        //e.g sortingFunction is BubbleSort, the line below is the same as BubbleSort(cards, setCountTimes, true, setSortingSteps)
+        sortingFunction(cards, setCountTimes, true, setSortingSteps)
     );
     return (
         <>
