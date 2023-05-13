@@ -3,9 +3,8 @@ export interface Swap {
     index2: number | null;
 }
 
-const AlgoSteps = (sortedArray:any, setCountTimes:any,  challengeMode:any, setSortingSteps:any) => {
+const BubbleSort = (sortedArray:any, setCountTimes:any,  challengeMode:any, setSortingSteps:any) => {
     const arr = [...sortedArray];
-    debugger;
     let tempOrder: Swap[] = [];
     let tempSortingSteps = []
     let swapped;
@@ -57,4 +56,4 @@ const AlgoSteps = (sortedArray:any, setCountTimes:any,  challengeMode:any, setSo
     setCountTimes(countTimes);
   }
 
-  export default AlgoSteps;
+  export default BubbleSort;

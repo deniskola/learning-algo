@@ -1,34 +1,55 @@
 
 
-const AlgoSteps = (items:any, setOrder:any,  order:any, setShowItems:any, setItems:any) => {
+const SelectionSort = (items:any, setCountTimes:any, challengeMode:boolean, setSortingSteps:any) => {
     const arr = [...items]
-    let tempOrder: any[] = [];
+    let tempSortingSteps = [];
+    let countTimes = 0;
     for (let i = 0; i < arr.length - 1; i++) {
+      if(!challengeMode){
+        countTimes++;
+        arr.map((t)=> ((t.id !== arr[i].id) && t.opacity.push(0.5)))
+        arr[i].opacity.push(1)
+      }
       let minIndex = i;
       for (let j = i + 1; j < arr.length; j++) {
         //animation
-        tempOrder.push({ index1: null , index2: null });
-        arr.map((t)=> (t.x.push(t.x.at(-1))))
-
-        if (arr[j].value < arr[minIndex].value) {
-          minIndex = j;   
-        }
+        countTimes++;
+        tempSortingSteps.push({
+          array: arr.map(({id, value}) => ({id , value})),
+          swap: null
+        })
+        if(!challengeMode){
+          arr.map((t)=> (t.x.push(t.x.at(-1))))
+          arr.map((t)=> ((t.id !== arr[j].id ) && t.opacity.push(0.5)))
+          arr[j].opacity.push(1)
+          
+          if (arr[j].value < arr[minIndex].value) {
+            minIndex = j;   
+          }
+        }  
       }
       let temp = arr[minIndex];
       arr[minIndex] = arr[i];
       arr[i] = temp;
 
       //animation
-      tempOrder.push({ index1: arr[i] , index2: arr[minIndex] });
-      arr.map((t)=> (t.id !== arr[i].id && t.id !== arr[minIndex].id) && t.x.push(t.x.at(-1)))
-      arr[i].x.push(arr[i].x.at(-1)+(i-minIndex)*49)
-      arr[minIndex].x.push(arr[minIndex].x.at(-1)-(i-minIndex)*49)
-    
+      countTimes++;
+      tempSortingSteps.push({
+        array: arr.map(({id, value}) => ({id , value})),
+        swap: {item1: arr[i].id, item2: arr[minIndex].id}
+      })
+      if(!challengeMode){
+        arr.map((t)=> (t.id !== arr[i].id && t.id !== arr[minIndex].id) && t.x.push(t.x.at(-1)))
+        arr[i].x.push(arr[i].x.at(-1)+(i-minIndex)*49)
+        arr[minIndex].x.push(arr[minIndex].x.at(-1)-(i-minIndex)*49)
+        arr.map((t)=> ((t.id !== arr[minIndex].id) && t.opacity.push(0.5)))
+        arr[minIndex].opacity.push(1)
+      }
     }
-    setOrder([...order, ...tempOrder]); 
+    setSortingSteps([...tempSortingSteps])
     // setItems(arr)
-    setShowItems(true)
+    setCountTimes(countTimes);
   }
   
 
-export default AlgoSteps;
+export default SelectionSort;

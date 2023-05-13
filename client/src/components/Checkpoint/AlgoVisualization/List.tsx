@@ -117,7 +117,7 @@ return (
             }}
             transition= {{
               times: keyFrameTimes(),
-              duration: 10,
+              duration: 20,
             }}
           >
             <ListItem key={item.id} value={item.value}/>
@@ -140,7 +140,7 @@ return (
       </div>
     </>)} 
     <button onClick={()=> {BubbleSort(items, setCountTimes,  false, setSortingSteps); setShowItems(true) }}>Bubble Sort</button>
-    <button onClick={()=> {SelectionSort(items, setOrder, order, setShowItems, setItems)}}>Selection Sort</button>
+    <button onClick={()=> {SelectionSort(items, setCountTimes, false, setSortingSteps); setShowItems(true)}}>Selection Sort</button>
   </>
   )
 }

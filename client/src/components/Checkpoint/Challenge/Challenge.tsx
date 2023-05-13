@@ -11,6 +11,7 @@ import { Items, SortingSteps } from '../../../types/checkpoint';
 
 const Challenge = () => {
     const challengeInfoRef = useRef<HTMLDivElement>(null);
+    const challengeInfo = useSelector((state: RootState) => state.checkpoint.challengeInfo);
     const [sortingSteps, setSortingSteps] = useState<SortingSteps>();
     const [countTimes, setCountTimes] = useState<number>(0);
     const currentCheckpoint = useSelector((state: RootState) => state.currentModule.currentCheckpoint);
@@ -47,6 +48,12 @@ const Challenge = () => {
           value: '1',
         },
       ])
+      useEffect(() => {
+        const container = challengeInfoRef.current;
+        if (container) {
+          container.scrollTop = container.scrollHeight;
+        }
+      }, [challengeInfo]);
 
       useEffect(() => {
         async function loadSortingFunction() {
