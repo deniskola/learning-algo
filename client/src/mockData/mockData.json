@@ -20,7 +20,8 @@
                         "id": 2,
                         "contentType": "algo-visualization",
                         "name": "visualization",
-                        "title": "Bubble Sort visualization"
+                        "title": "Bubble Sort visualization",
+                        "function": "BubbleSort"
                        },
                        {
                         "id": 3,
@@ -47,7 +48,8 @@
                         "id": 5,
                         "contentType": "algo-visualization",
                         "name": "visualization",
-                        "title": "Selection Sort visualization"
+                        "title": "Selection Sort visualization",
+                        "function": "SelectionSort"
                        },
                        {
                         "id": 6,
