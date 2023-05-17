@@ -1,3 +1,4 @@
+import { Box } from '@mui/material'
 import type { Identifier } from 'dnd-core'
 import type { FC } from 'react'
 import { useRef } from 'react'
@@ -78,8 +79,11 @@ export const Card: FC<CardProps> = ({ id, value, index, moveCard }) => {
   drag(drop(ref))
 
   return (
-    <div ref={ref} style={{ ...style, opacity, height: `${parseInt(value)*50}px` }} data-handler-id={handlerId}>
-       {value}
-    </div>
+    <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "space-between", flexDirection: "column" }}>
+      <div ref={ref} style={{ ...style, opacity, height: `${parseInt(value)*50}px` }} data-handler-id={handlerId}>
+        {value}
+      </div>
+      <span>{index}</span>
+    </Box>
   )
 }
