@@ -7,9 +7,10 @@ import Timeline from '@mui/lab/Timeline';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
 import { Link } from 'react-router-dom';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import ArticleIcon from '@mui/icons-material/Article';
+import ExtensionIcon from '@mui/icons-material/Extension';
 
 const Module = ({mod}:any) => {
 
@@ -36,15 +37,18 @@ const Module = ({mod}:any) => {
                     {mod.steps.map((x:any) => (
                       <>
                       
-                    <TimelineItem>
+                    <TimelineItem>  
                       <TimelineSeparator>
-                        <Link to={'/step'}>
-                          <TimelineDot />
-                        </Link>
+                        {x.contentType === 'lesson' ? <ArticleIcon/> :
+                        x.contentType === 'algo-visualization' ? <BarChartIcon /> :
+                        <ExtensionIcon />
+                        }
                         <TimelineConnector />
                       </TimelineSeparator>
-                      <Link to={`${mod.id}/${x.id}`}>
-                        <TimelineContent>{x.name}</TimelineContent>
+                      <Link to={`${mod.id}/${x.id}`} style={{ textDecoration: 'none' }}>
+                        <Typography>
+                          &nbsp;{x.name}
+                        </Typography>
                       </Link>
                     </TimelineItem>
                     
