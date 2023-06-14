@@ -4,19 +4,19 @@ import storage from 'redux-persist/lib/storage';
 import profileReducer from './slices/profileSlice';
 import checkpointReducer from './slices/checkpointSlice';
 import currentModuleReducer from './slices/currentModuleSlice';
+import algoVisualizationReducer from './slices/algoVisualizationSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, profileReducer);
-
 export const store = configureStore({
   reducer: {
-    profile: persistedReducer,
+    profile: persistReducer(persistConfig, profileReducer),
     checkpoint: checkpointReducer,
-    currentModule: currentModuleReducer
+    currentModule: currentModuleReducer,
+    algoVisualization: persistReducer(persistConfig, algoVisualizationReducer)
   },
 });
 

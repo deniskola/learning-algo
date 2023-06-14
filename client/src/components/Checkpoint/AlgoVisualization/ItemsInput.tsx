@@ -1,12 +1,18 @@
 import {useState, useEffect} from "react";
 import {Items} from "../../../types/checkpoint";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../../redux/store";
+import {setInputValue} from "../../../redux/slices/algoVisualizationSlice";
 
 interface ItemsInputProps {
   setItems: React.Dispatch<React.SetStateAction<Items>>;
 }
 
 const ItemsInput: React.FC<ItemsInputProps> = ({setItems}) => {
-  const [inputValue, setInputValue] = useState<string>("");
+  const inputValue = useSelector(
+    (state: RootState) => state.algoVisualization.inputValue
+  );
+  const dispatch = useDispatch();
   const [isValid, setIsValid] = useState<boolean>(true);
 
   useEffect(() => {
@@ -27,7 +33,7 @@ const ItemsInput: React.FC<ItemsInputProps> = ({setItems}) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
     const filteredInput = input.replace(/[^0-9,]/g, "");
-    setInputValue(filteredInput);
+    dispatch(setInputValue(filteredInput));
     setIsValid(validateInput(filteredInput));
   };
 
