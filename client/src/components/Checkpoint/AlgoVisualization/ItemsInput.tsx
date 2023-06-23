@@ -2,7 +2,10 @@ import {useState, useEffect} from "react";
 import {Items} from "../../../types/checkpoint";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
-import {setInputValue} from "../../../redux/slices/algoVisualizationSlice";
+import {
+  generateRandomArray,
+  setInputValue,
+} from "../../../redux/slices/algoVisualizationSlice";
 
 interface ItemsInputProps {
   setItems: React.Dispatch<React.SetStateAction<Items>>;
@@ -52,6 +55,9 @@ const ItemsInput: React.FC<ItemsInputProps> = ({setItems}) => {
         pattern="^(?:[1-9]|1[0-9]|20)(?:,(?:[1-9]|1[0-9]|20))*$"
       />
       {!isValid && <p>Please enter a valid input matching the pattern</p>}
+      <button onClick={() => dispatch(generateRandomArray())}>
+        Generate random numbers
+      </button>
     </div>
   );
 };
