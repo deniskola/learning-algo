@@ -47,7 +47,7 @@ const ItemsInput: React.FC<ItemsInputProps> = ({setItems}) => {
   };
 
   return (
-    <div>
+    <span>
       <input
         type="text"
         value={inputValue}
@@ -58,7 +58,7 @@ const ItemsInput: React.FC<ItemsInputProps> = ({setItems}) => {
       <button onClick={() => dispatch(generateRandomArray())}>
         Generate random numbers
       </button>
-    </div>
+    </span>
   );
 };
 

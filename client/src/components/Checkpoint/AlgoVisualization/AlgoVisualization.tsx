@@ -27,13 +27,11 @@ const AlgoVisualization = () => {
   }, [currentCheckpoint.function]);
 
   return (
-    <>
-      <Stack direction="row" spacing={2}>
-        <Typography variant="h5" display="block" sx={{m: 2}}>
-          {currentCheckpoint.title}
-        </Typography>
-        <ItemsInput setItems={setItems} />
-      </Stack>
+    <div style={{height: "100vh", position: "relative"}}>
+      <Typography variant="h5" display="block" sx={{m: 2}}>
+        {currentCheckpoint.title}
+      </Typography>
+
       <List
         items={items}
         setCountTimes={setCountTimes}
@@ -43,6 +41,7 @@ const AlgoVisualization = () => {
         showItems={showItems}
       />
       <button
+        style={{position: "relative", bottom: 0}}
         onClick={() => {
           sortingFunction &&
             sortingFunction(items, setCountTimes, false, setSortingSteps);
@@ -51,7 +50,8 @@ const AlgoVisualization = () => {
       >
         Sort
       </button>
-    </>
+      <ItemsInput setItems={setItems} />
+    </div>
   );
 };
 
