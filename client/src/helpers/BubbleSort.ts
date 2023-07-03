@@ -9,6 +9,7 @@ const BubbleSort = (sortedArray:any, setCountTimes:any,  challengeMode:any, setS
     let tempSortingSteps = []
     let swapped;
     let countTimes = 0;
+    const distance = 49.5;
 
     do {
         swapped = false;
@@ -27,9 +28,9 @@ const BubbleSort = (sortedArray:any, setCountTimes:any,  challengeMode:any, setS
                 //animation
                 countTimes++;
                 if(!challengeMode) {
-                    arr[i+1].x.push(arr[i+1].x.length > 0 ? (arr[i+1].x.at(-1)+49) : 49)
+                    arr[i+1].x.push(arr[i+1].x.length > 0 ? (arr[i+1].x.at(-1)+distance) : distance)
                     arr.map((t)=> ((t.id !== arr[i].id && t.id !== arr[i+1].id ) && t.x.push(t.x.at(-1))))
-                    arr[i].x.push(arr[i].x.length > 0 ? (arr[i].x.at(-1)-49) : (-49))
+                    arr[i].x.push(arr[i].x.length > 0 ? (arr[i].x.at(-1)- distance) : (-distance))
                 }
                 tempSortingSteps.push({
                     array: arr.map(({id, value}) => ({id , value})),

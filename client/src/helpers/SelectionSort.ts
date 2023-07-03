@@ -4,6 +4,8 @@ const SelectionSort = (items:any, setCountTimes:any, challengeMode:boolean, setS
     const arr = [...items]
     let tempSortingSteps = [];
     let countTimes = 0;
+    const distance = 49.5;
+
     for (let i = 0; i < arr.length - 1; i++) {
       if(!challengeMode){
         countTimes++;
@@ -40,8 +42,8 @@ const SelectionSort = (items:any, setCountTimes:any, challengeMode:boolean, setS
       })
       if(!challengeMode){
         arr.map((t)=> (t.id !== arr[i].id && t.id !== arr[minIndex].id) && t.x.push(t.x.at(-1)))
-        arr[i].x.push(arr[i].x.at(-1)+(i-minIndex)*49)
-        arr[minIndex].x.push(arr[minIndex].x.at(-1)-(i-minIndex)*49)
+        arr[i].x.push(arr[i].x.at(-1)+(i-minIndex)* distance)
+        arr[minIndex].x.push(arr[minIndex].x.at(-1)-(i-minIndex)* distance)
         arr.map((t)=> ((t.id !== arr[minIndex].id) && t.opacity.push(0.5)))
         arr[minIndex].opacity.push(1)
       }
