@@ -4,7 +4,7 @@ export const ItemTypes = {
 
 const style = {
   border: "1px solid gray",
-  padding: "0.5rem 1rem 0.5rem 1rem",
+  padding: "0.5rem 0 0.5rem 0",
   margin: ".2rem ",
   backgroundColor: "white",
   cursor: "move",
@@ -22,6 +22,8 @@ export const ListItem: React.FC<ListItemProps> = ({value}) => {
         height: `${parseInt(value) * 20}px`,
         backgroundColor: "#041014",
         color: "whitesmoke",
+        width: "43.06px",
+        textAlign: "center",
       }}
     >
       {value}

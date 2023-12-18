@@ -6,6 +6,7 @@ import {Items, SortingSteps} from "../../../types/checkpoint";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ItemsInput from "./ItemsInput";
+import {Button} from "@mui/material";
 
 const AlgoVisualization = () => {
   const [sortingFunction, setSortingFunction] = useState<Function | null>(null);
@@ -31,7 +32,6 @@ const AlgoVisualization = () => {
       <Typography variant="h5" display="block" sx={{m: 2}}>
         {currentCheckpoint.title}
       </Typography>
-
       <List
         items={items}
         setCountTimes={setCountTimes}
@@ -40,7 +40,12 @@ const AlgoVisualization = () => {
         countTimes={countTimes}
         showItems={showItems}
       />
-      <button
+      <br></br>
+      <ItemsInput setItems={setItems} />
+      &nbsp;&nbsp;
+      <Button
+        variant="outlined"
+        size="small"
         style={{position: "relative", bottom: 0}}
         onClick={() => {
           sortingFunction &&
@@ -49,8 +54,8 @@ const AlgoVisualization = () => {
         }}
       >
         Sort
-      </button>
-      <ItemsInput setItems={setItems} />
+      </Button>
+      <br></br>
     </div>
   );
 };

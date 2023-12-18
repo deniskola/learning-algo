@@ -6,6 +6,7 @@ import {
   generateRandomArray,
   setInputValue,
 } from "../../../redux/slices/algoVisualizationSlice";
+import {Button} from "@mui/material";
 
 interface ItemsInputProps {
   setItems: React.Dispatch<React.SetStateAction<Items>>;
@@ -40,6 +41,18 @@ const ItemsInput: React.FC<ItemsInputProps> = ({setItems}) => {
     setIsValid(validateInput(filteredInput));
   };
 
+  const generateRandomArray = () => {
+    const length = Math.floor(Math.random() * 6) + 5; // Random array length between 5 and 10
+    const newArray = Array.from(
+      {length},
+      () => Math.floor(Math.random() * 20) + 1
+    ); // Random numbers between 1 and 20
+    const arrayToString = newArray.join(",");
+    const filteredInput = arrayToString.replace(/[^0-9,]/g, "");
+    dispatch(setInputValue(filteredInput));
+    setIsValid(validateInput(filteredInput));
+  };
+
   const validateInput = (input: string) => {
     //this regex is used to match a string that contains only numbers and commas, where the numbers seperated by commas are between 1 and 20
     const regex = /^(?:[1-9]|1[0-9]|20)(?:,(?:[1-9]|1[0-9]|20))*$/;
@@ -54,10 +67,15 @@ const ItemsInput: React.FC<ItemsInputProps> = ({setItems}) => {
         onChange={handleInputChange}
         pattern="^(?:[1-9]|1[0-9]|20)(?:,(?:[1-9]|1[0-9]|20))*$"
       />
+      &nbsp;&nbsp;
       {!isValid && <p>Please enter a valid input matching the pattern</p>}
-      <button onClick={() => dispatch(generateRandomArray())}>
-        Generate random numbers
-      </button>
+      <Button
+        variant="outlined"
+        size="small"
+        onClick={() => generateRandomArray()}
+      >
+        Generate random
+      </Button>
     </span>
   );
 };
